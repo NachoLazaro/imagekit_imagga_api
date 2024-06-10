@@ -1,0 +1,34 @@
+name: imagekit_api
+
+services:
+  db:
+    container_name: database
+    image: mysql:8.0
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_USER: mbit
+      MYSQL_PASSWORD: mbit
+      MYSQL_DATABASE: Pictures
+      MYSQL_ROOT_PASSWORD: root
+    healthcheck:
+        test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+        timeout: 20s
+        retries: 10
+    volumes:
+      - ./database:/var/lib/mysql
+    
+
+  my_app:
+    container_name: my_app
+    build: .
+    ports:
+      - 8080:8080
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file:
+      - .env
+    volumes:
+      - ./Imagenes:/app/Imagenes
