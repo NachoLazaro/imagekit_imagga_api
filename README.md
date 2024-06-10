@@ -19,7 +19,7 @@ IMAGGA_API_SECRET=
 
 
 ### CLAVES BBDD
-MY_SQL_HOST=  (mysql cuando se lance con waitress y localhost cuando se lance con flask)
+MY_SQL_HOST=  (database cuando se lance con waitress y localhost cuando se lance con flask)
 MY_SQL_USER=
 MY_SQL_PASSWORD=
 
